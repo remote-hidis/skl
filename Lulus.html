@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANGBIN SKL 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link id="favicon" rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/d/16rll5zsRdwTbR3nF_NmPKwY51tg4tnOn">     
+    <style>
+        :root { --primary-color: #2563eb; --secondary-color: #1e293b; --accent-color: #fbbf24; --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); --card-bg: rgba(255, 255, 255, 0.95); }
+        body { background: var(--bg-gradient); background-attachment: fixed; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px 0; font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--secondary-color); }
+        .main-card { border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); max-width: 600px; width: 90%; background: var(--card-bg); backdrop-filter: blur(10px); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .main-card:hover { transform: translateY(-5px); box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.6); }
+        .form-label { color: var(--secondary-color); font-weight: 600; margin-bottom: 0.5rem; }
+        .input-group-text { background-color: #f1f5f9; border: 1px solid #e2e8f0; border-right: none; color: #64748b; border-radius: 12px 0 0 12px; }
+        .form-control, .form-select { border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 15px; background-color: #f1f5f9; transition: all 0.3s ease; }
+        .input-group .form-control, .input-group .form-select { border-radius: 0 12px 12px 0; border-left: none; }
+        .form-control:focus, .form-select:focus { background-color: #fff; border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        .btn-login { background: var(--primary-color); border: none; border-radius: 12px; padding: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; position: relative; overflow: hidden; }
+        .btn-login:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
+        .btn-login:active { transform: translateY(1px); }
+        .header-bg { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; padding: 40px 20px; text-align: center; position: relative; }
+        .header-bg::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g fill="%23ffffff" fill-opacity="0.05" fill-rule="evenodd"><circle cx="3" cy="3" r="3"/><circle cx="13" cy="13" r="3"/></g></svg>'); }
+        .info-box { background-color: #ffffff; border-radius: 16px; padding: 20px; border: 1px solid #e2e8f0; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+        .info-label { color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .info-value { color: var(--secondary-color); font-weight: 700; font-size: 1.1rem; }
+        .table-responsive { border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .table-custom { margin-bottom: 0; }
+        .table-custom thead th { background-color: #f8fafc; color: var(--secondary-color); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; padding: 15px; border-bottom: 2px solid #e2e8f0; }
+        .table-custom tbody td { padding: 15px; vertical-align: middle; border-bottom: 1px solid #f1f5f9; color: #334155; }
+        .table-custom tbody tr:last-child td { border-bottom: none; }
+        .table-custom tbody tr:hover { background-color: #f1f5f9; }
+        .row-avg { background-color: #f8fafc !important; font-weight: bold; }
+        .row-avg td { border-top: 2px solid #e2e8f0; color: var(--primary-color) !important; font-size: 1.1rem; }
+        .status-badge { font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 15px; border-radius: 12px; font-size: 1.25rem; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .status-lulus { background-color: #d1fae5; color: #065f46; border: 2px solid #10b981; }
+        .status-tidak-lulus { background-color: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
+        @keyframes pulse-gold { 0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.7)); } 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); } }
+        .award-icon { font-size: 4rem; color: var(--accent-color); animation: pulse-gold 2s infinite; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        @media (max-width: 576px) { .main-card { padding: 1.5rem !important; } .header-bg { padding: 30px 15px; } .award-icon { font-size: 3rem; } h3 { font-size: 1.5rem; } .status-badge { font-size: 1rem; padding: 10px; } }
+    </style>
+</head>
+<body>
+
+<div class="container d-flex justify-content-center">
+    <div id="loginArea" class="main-card p-4 p-md-5 animate__animated animate__fadeInUp">
+        <div class="text-center mb-4">
+            <div class="d-inline-block mb-3 position-relative">
+                <a href="#">
+                    <img src="https://lh3.googleusercontent.com/d/16rll5zsRdwTbR3nF_NmPKwY51tg4tnOn" alt="Logo Sekolah" style="width: 100px; height: 100px; object-fit: cover;" class="rounded-circle shadow border p-1 bg-white animate__animated animate__heartBeat animate__delay-1s">
+                    <span class="position-absolute bottom-0 end-0 bg-success rounded-circle p-2 border border-white" title="Sistem Online"></span>
+                </a>
+            </div>
+            <h3 class="fw-bold text-dark">Pengumuman Kelulusan</h3>
+            <p class="text-muted">Tahun Ajaran <span class="fw-bold text-primary">2025/2026</span></p>
+            <hr class="dropdown-divider w-25 mx-auto opacity-100" style="border-color: var(--primary-color); border-width: 2px;">
+        </div>
+
+        <div id="loaderArea" class="text-center mb-4 py-4 bg-light rounded-3 border animate__animated animate__pulse animate__infinite">
+            <div class="spinner-border text-primary" role="status" style="width: 1.5rem; height: 1.5rem;"></div>
+            <div class="small fw-bold mt-2 text-muted">Menyinkronkan Data Cloud...</div>
+        </div>
+
+        <form id="loginForm" style="display: none;" class="animate__animated animate__fadeIn">
+            <div class="mb-3">
+                <label class="form-label">Pilih Nama Lengkap</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                    <select id="selectNama" class="form-select ps-2">
+                        <option value="">-- Klik --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Nomor Induk</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+                    <input type="password" id="inputPassword" class="form-control ps-2" placeholder="Ketik Nomor Induk">
+                </div>
+                <div class="form-text text-xs text-muted"><i class="fa-solid fa-info-circle me-1"></i>Gunakan Nomor Induk resmi Kamu sebagai password.</div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-login w-100 text-white" onclick="handleLogin()">
+                <i class="fa-solid fa-magnifying-glass me-2"></i> Lihat Hasil Kelulusan
+            </button>
+        </form>
+
+        <div class="text-center mt-4 pt-3 border-top">
+            <p class="text-muted small mb-0">
+                Hubungi Panitia / Wali Kelas 
+                <a href="https://wa.me/6281310051985" target="_blank" class="text-success text-decoration-none ms-1" title="Hubungi via WhatsApp">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; vertical-align: middle;"></i>
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <div id="resultArea" class="main-card animate__animated animate__zoomIn" style="display: none;">
+        <div class="header-bg">
+            <i class="fa-solid fa-award award-icon mb-3"></i>
+            <h4 class="fw-bold mb-1">Surat Keterangan Lulus</h4>
+            <p class="mb-0 opacity-75 small">Berdasarkan Hasil Keputusan Satuan Pendidikan</p>
+        </div>
+        
+        <div class="p-4 p-md-5">
+            <div class="info-box mb-4">
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <div class="info-label">Nama Lengkap</div>
+                        <div class="info-value" id="resNama">-</div>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <div class="info-label">Nomor NISN</div>
+                        <div class="info-value" id="resNisn">-</div>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <div class="info-label">Nomor Induk</div>
+                        <div class="info-value" id="resInduk">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-5 animate__animated animate__jackInTheBox animate__delay-1s">
+                <p class="text-muted small mb-2 fw-bold text-uppercase" style="letter-spacing: 1px;">STATUS KELULUSAN:</p>
+                <div id="resStatus" class="status-badge"></div>
+            </div>
+
+            <div class="d-flex align-items-center mb-3">
+                <h6 class="fw-bold text-primary mb-0"><i class="fa-solid fa-chart-line me-2"></i>Rincian Nilai Akhir Sekolah</h6>
+                <div class="flex-grow-1 ms-3"><hr class="my-0 opacity-25"></div>
+            </div>
+            
+            <div class="table-responsive mb-4 shadow-sm">
+                <table class="table table-hover table-custom text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-start ps-4" width="70%">Mata Pelajaran</th>
+                            <th width="30%">Nilai NAS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resTableBody">
+                        </tbody>
+                    <tfoot>
+                        <tr class="row-avg">
+                            <td class="text-end pe-4">Rata-rata Keseluruhan :</td>
+                            <td id="resRata"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="text-muted small mb-4">Kartu ini adalah sarana informasi cepat. Surat keputusan resmi tetap berlaku.</p>
+                <button class="btn btn-outline-secondary rounded-pill px-4 fw-bold transition-all" onclick="kembaliLogin()" style="border-width: 2px;">
+                    <i class="fa-solid fa-arrow-left me-2"></i> Kembali
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="msgModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 shadow-lg rounded-4 animate__animated animate__zoomInFast">
+            <div class="modal-body text-center p-4">
+                <div id="msgIcon" class="mb-3" style="font-size: 3.5rem;"></div>
+                <h5 id="msgTitle" class="fw-bold mb-2"></h5>
+                <p id="msgText" class="text-muted small mb-4"></p>
+                <button type="button" class="btn btn-primary w-100 rounded-pill fw-bold" data-bs-dismiss="modal">Mengerti</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPxgrLIgT4VXWPyrxx5KkExB8QaBlspIrigLsYXFciySOdoL3haTBi1JtKR59Gqoo/exec"; 
+    
+    let dbSiswa = [];
+    let modalInstance;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        modalInstance = new bootstrap.Modal(document.getElementById('msgModal'));
+        fetch(SCRIPT_URL)
+            .then(res => res.json())
+            .then(data => {
+                dbSiswa = data;
+                const select = document.getElementById('selectNama');
+                data.forEach(s => {
+                    if(s["Induk"] && s["Nama Lengkap"]) {
+                        let opt = document.createElement('option');
+                        opt.value = s["Induk"].toString().trim();
+                        opt.text = s["Nama Lengkap"];
+                        select.appendChild(opt);
+                    }
+                });
+                document.getElementById('loaderArea').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+            })
+            .catch(err => {
+                showModal("Koneksi Gagal", "Gagal mengambil data dari Google Sheets. Pastikan URL Apps Script sudah benar.", "warning");
+                document.getElementById('loaderArea').innerHTML = '<div class="text-danger fw-bold py-2"><i class="fa-solid fa-wifi fa-2x mb-2"></i><br>Gagal terhubung ke Cloud.</div>';
+                document.getElementById('loaderArea').classList.remove('animate__infinite');
+            });
+    });
+
+    function handleLogin() {
+        const selectedInduk = document.getElementById('selectNama').value;
+        const inputPwd = document.getElementById('inputPassword').value.trim();
+
+        if(!selectedInduk || !inputPwd) {
+            showModal("Perhatian", "Silakan pilih Nama Kamu dan masukkan Nomor Induk terlebih dahulu.", "warning");
+            return;
+        }
+
+        if(inputPwd === selectedInduk) {
+            const studentData = dbSiswa.find(s => s["Induk"].toString().trim() === selectedInduk);
+            if(studentData) {
+                tampilkanHasil(studentData);
+            } else {
+                showModal("Error Data", "Data siswa tidak ditemukan dalam database.", "warning");
+            }
+        } else {
+            showModal("Akses Ditolak", "Nomor Induk yang Kamu masukkan salah. Silakan coba lagi.", "warning");
+            document.getElementById('inputPassword').value = '';
+        }
+    }
+
+    function tampilkanHasil(data) {
+        const resultCard = document.getElementById('resultArea');
+        resultCard.classList.remove('animate__zoomIn');
+        void resultCard.offsetWidth; 
+        resultCard.classList.add('animate__zoomIn');
+
+        document.getElementById('loginArea').style.display = 'none';
+        resultCard.style.display = 'block';
+        document.getElementById('resNama').innerText = data["Nama Lengkap"] || "-";
+        document.getElementById('resNisn').innerText = data["NISN"] || "-";
+        document.getElementById('resInduk').innerText = data["Induk"] || "-";
+
+        const statusEl = document.getElementById('resStatus');
+        const isLulus = data["Kelulusan"] && data["Kelulusan"].toString().toUpperCase() === "LULUS";
+        
+        if(isLulus) {
+            statusEl.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>LULUS';
+            statusEl.className = "status-badge status-lulus";
+        } else {
+            statusEl.innerHTML = '<i class="fa-solid fa-circle-xmark me-2"></i>TIDAK LULUS';
+            statusEl.className = "status-badge status-tidak-lulus";
+        }
+
+        const tbody = document.getElementById('resTableBody');
+        tbody.innerHTML = '';
+
+        const kolomDiabaikan = ["No.", "NISN", "Induk", "Nama Lengkap", "Kelulusan", "Jumlah NAS", "Rata-rata NAS", "Jumlah", "Rata-rata"];
+        let tableRows = '';
+
+        for(let key in data) {
+            if(!kolomDiabaikan.includes(key)) {
+                if(key.trim() !== "") {
+                    tableRows += `
+                        <tr class="animate__animated animate__fadeInUp animate__faster">
+                            <td class="text-start ps-4 fw-bold text-secondary">${key}</td>
+                            <td class="fw-bold text-dark">${data[key]}</td>
+                        </tr>
+                    `;
+                }
+            }
+        }
+        tbody.innerHTML = tableRows;
+
+        const rows = tbody.querySelectorAll('tr');
+        rows.forEach((row, index) => {
+            row.style.animationDelay = `${(index + 1) * 50}ms`;
+        });
+
+        const rataRata = data["Rata-rata NAS"] || data["Rata-rata"] || "-";
+        document.getElementById('resRata').innerText = rataRata;
+    }
+
+    function kembaliLogin() {
+        document.getElementById('inputPassword').value = '';
+        document.getElementById('selectNama').selectedIndex = 0;
+        document.getElementById('resultArea').style.display = 'none';
+        
+        const loginCard = document.getElementById('loginArea');
+        loginCard.style.display = 'block';
+        loginCard.classList.remove('animate__fadeInUp');
+        void loginCard.offsetWidth;
+        loginCard.classList.add('animate__fadeInUp');
+    }
+
+    function showModal(title, text, type) {
+        document.getElementById('msgTitle').innerText = title;
+        document.getElementById('msgText').innerText = text;
+        const icon = document.getElementById('msgIcon');
+        
+        if(type === 'success') {
+            icon.innerHTML = '<i class="fa-solid fa-circle-check text-success animate__animated animate__bounceIn"></i>';
+        } else {
+            icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-warning animate__animated animate__shakeX"></i>';
+        }
+        modalInstance.show();
+    }
+</script>
+</body>
+</html>
